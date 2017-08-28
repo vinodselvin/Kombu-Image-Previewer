@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Sample Image Previewer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            .hide{display: none;}
+            
+            ._previewer{
+                position:relative;
+                width: 99%;
+                height:97vh;
+                border: 1px solid #ccc;
+                margin:auto; 
+                text-align: center; 
+                background: black; 
+                display: block;
+		position: absolute;
+    		top: 0;
+    		left: 0;
+    		right: 0;
+    		bottom: 0;
+		display: none;
+            }
+    
+            .img-prev{
+                position:absolute;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		margin:auto;
+		width: 100vh;
+		max-width: 100%;
+            }
+	   ._close_{float: right; margin-right: 20px; margin-top: 20px; width: 20px; color: white; z-index: 1061;}
+	   ._left{
+	   	position:absolute;
+		top:0;
+		bottom:0;
+		left:20px;
+		margin:auto;
+		width: 20px;
+		transform: rotate(180deg);
+		z-index: 1061;
+	   }
+	   ._left:hover, ._right:hover, ._close_:hover, ._rotate_:hover{
+	   	opacity:0.6;
+           }
+	   ._left:active, ._right:active, ._close_:active, ._rotate_:active{
+	   	opacity:0.4;
+           }
+	   ._right{
+	   	position:absolute;
+		top:0;
+		bottom:0;
+		right:20px;
+		margin:auto;
+		width: 20px;
+		z-index: 1061;
+	   }
+	   ._close_, ._left, ._right, ._rotate_{cursor: pointer;}
+	   ._rotate_{float: left; margin-left: 20px; margin-top: 15px; width: 30px; color: white; z-index: 1061; opacity: 0.7;}
+	   #_resolution_, ._file_name_{float: right; position: absolute; width: auto; color: white; z-index: 1061; bottom: 0; right: 20px;}
+	   ._file_name_{margin-left: 0px; float: left; left: 20px; right: auto; max-width: 50%;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
+</style>
+    </head>
+    <body>
+
+	<img class="_img_tb_previewed" src="sample-1.jpg" width="300" height="225">
+	<img class="_img_tb_previewed" src="sample-2.jpg" width="300" height="225">
+	<img class="_img_tb_previewed" src="sample-3.jpg" width="300" height="225">
+	<img class="_img_tb_previewed" src="sample-4.jpg" width="300" height="225">
+
+<div class="_previewer" id="_img_previewer">
+<div class="_previewer_container">
+    <img src="icons/close.png" class="_close_" id="_close_" onclick="_closePreviewer();">
+    
+    <img src="icons/rotate.png" class="_rotate_" id="_rotate_" onclick="_rotateRight();">
+    <img src="icons/right.png" class="_left" id="_left">
+    <img class="img-prev" id="img-prev" src="sample-1.jpg" onmouseover="_showImagePixels(this);">
+    <img src="icons/right.png" class="_right" id="_right">
+    <p id="_resolution_"></p>
+    <p class="_file_name_" id="_file_name_"></p>
+</div>
+</div>
+<script src="image-previewer.js"></script>
+</body>
+
+</html>
