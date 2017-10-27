@@ -5,4 +5,8 @@ Kombu Image Previewer, is an awesome Image previewer for web based applications,
 
 ## Just git clone and open sample.html
 
--Happy Coding
+Happy Coding
+
+## For Demo, check out below pen.
+
+https://codepen.io/vinodselvin/pen/NwWKZV
