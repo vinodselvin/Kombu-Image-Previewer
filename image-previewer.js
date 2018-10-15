@@ -166,10 +166,10 @@ function moveTouch(e) {
     // sliding horizontally
     if (diffX > 0) {
 	  // swiped left
-      showPreviousImage();
+	  showNextImage();
     } else {
 	  // swiped right
-      showNextImage();
+      showPreviousImage();
     }  
   } else {
     // sliding vertically
