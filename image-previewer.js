@@ -22,11 +22,8 @@ for (var i = 0; i < _imagePreview.length; i++) {
 
 var _nextImage = document.getElementById('_right');
 
-_nextImage.addEventListener('click', function() {
-	var _img_src = document.getElementById("img-prev").src;
-	var _next_src = _getNextImage(_img_src, 'next');
-	document.getElementById("img-prev").src = _next_src;
-	_updateFileName(_next_src);
+_nextImage.addEventListener('click', function(){
+	showNextImage();
 });
 
 
@@ -58,12 +55,23 @@ function _getNextImage(_current_src, _nav){
 
 var _prevImage = document.getElementById('_left');
 
-_prevImage.addEventListener('click', function() {
+_prevImage.addEventListener('click', function(){
+	showPreviousImage();
+});
+
+function showPreviousImage(){
 	var _img_src = document.getElementById("img-prev").src;
 	var _prev_src = _getNextImage(_img_src, "previous");
 	document.getElementById("img-prev").src = _prev_src;
 	_updateFileName(_prev_src);
-});
+}
+
+function showNextImage(){
+	var _img_src = document.getElementById("img-prev").src;
+	var _next_src = _getNextImage(_img_src, 'next');
+	document.getElementById("img-prev").src = _next_src;
+	_updateFileName(_next_src);
+}
 
 document.onkeydown = function(e) {
 	
@@ -121,3 +129,61 @@ function _updateFileName(_url){
 	var _filename = _url.substring(_url.lastIndexOf('/')+1);
 	document.getElementById("_file_name_").innerHTML = _filename;
 }
+
+/*
+ * Detect swipe
+ */
+var _img_previewer_elem = document.getElementById("img-prev");
+
+_img_previewer_elem.addEventListener("touchstart", startTouch, false);
+_img_previewer_elem.addEventListener("touchmove", moveTouch, false);
+ 
+// Swipe Up / Down / Left / Right
+var initialX = null;
+var initialY = null;
+ 
+function startTouch(e) {
+  initialX = e.touches[0].clientX;
+  initialY = e.touches[0].clientY;
+};
+ 
+function moveTouch(e) {
+  if (initialX === null) {
+    return;
+  }
+ 
+  if (initialY === null) {
+    return;
+  }
+ 
+  var currentX = e.touches[0].clientX;
+  var currentY = e.touches[0].clientY;
+ 
+  var diffX = initialX - currentX;
+  var diffY = initialY - currentY;
+ 
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // sliding horizontally
+    if (diffX > 0) {
+	  // swiped left
+	  showNextImage();
+    } else {
+	  // swiped right
+      showPreviousImage();
+    }  
+  } else {
+    // sliding vertically
+    if (diffY > 0) {
+      // swiped up
+    //   console.log("swiped up");
+    } else {
+      // swiped down
+    //   console.log("swiped down");
+    }  
+  }
+ 
+  initialX = null;
+  initialY = null;
+   
+  e.preventDefault();
+};
