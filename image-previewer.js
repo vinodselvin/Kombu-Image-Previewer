@@ -193,11 +193,7 @@ document.getElementById("_img_previewer").addEventListener('keydown', function(e
     if (key === "Escape") {
         _closePreviewer();
     }
-});
-
-document.getElementById("_img_previewer").addEventListener('keydown', function(event) {
-    const key = event.key;
-    if (key === 82) {
+    if (key === "r" || key === "R") {
         _rotateRight();
     }
 });
