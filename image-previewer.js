@@ -194,3 +194,10 @@ document.getElementById("_img_previewer").addEventListener('keydown', function(e
         _closePreviewer();
     }
 });
+
+document.getElementById("_img_previewer").addEventListener('keydown', function(event) {
+    const key = event.key;
+    if (key === 82) {
+        _rotateRight();
+    }
+});
