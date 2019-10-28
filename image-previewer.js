@@ -187,3 +187,10 @@ function moveTouch(e) {
    
   e.preventDefault();
 };
+
+document.getElementById("_img_previewer").addEventListener('keydown', function(event) {
+    const key = event.key;
+    if (key === "Escape") {
+        _closePreviewer();
+    }
+});
